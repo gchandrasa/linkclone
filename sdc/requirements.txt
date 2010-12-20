@@ -1,0 +1,4 @@
+-e hg+http://bitbucket.org/ubernostrum/django-registration/@d36a38202ee3d09d342b000f4ff634
+django-taggit==0.9.1
+lxml
+

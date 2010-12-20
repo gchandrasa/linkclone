@@ -1,0 +1,39 @@
+<html lang="en">
+  <head>
+  </head>
+
+  <body>
+  <ul>
+    <li><a href="/">Home</a></li>
+    {% if user.is_authenticated %}
+    <li><a href="{% url user_bookmark user %}">Bookmarks</a></li>
+    <li><a href="{% url auth_logout %}">Log Out</a></li>
+    {% else %}
+    <li><a href="{% url registration_register %}">Register</a></li>
+    <li><a href="{% url auth_login %}">Log In</a></li>
+    {% endif %}
+  </ul>
+  {% if user.is_authenticated %}
+  Save Bookmark
+  <form action="{% url save_bookmark %}" method="post">
+    {% csrf_token %}
+    <input type="text" name="url"  />
+
+    <p><input type="Submit" value="Next &rarr;" /></p>
+  </form>
+  {% endif %}
+
+  {% if messages %}
+  <ul class="messages">
+      {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+  </ul>
+  {% endif %}
+
+  {% block content %}
+
+  {% endblock %}
+  </body>
+</html>
+

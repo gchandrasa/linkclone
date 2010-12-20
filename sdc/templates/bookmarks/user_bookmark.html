@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<h1>{{ user }}'s Bookmarks</h1>
+{% if link_list %}
+  <ul>
+  {% for link in link_list %}
+    <li>
+    <p><a href="{{ link.url }}" rel="nofollow">{{ link.title }}</a> <span class="via-links"> ({{ link.base_url }}) </span> - saved by {{ link.count }}</p>
+    </li>
+  {% endfor %}
+  </ul>
+{% else %}
+  <p>No bookmark</p>
+{% endif %}
+{% endblock %}
+
