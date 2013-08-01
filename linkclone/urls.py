@@ -1,21 +1,12 @@
-from django.conf.urls.defaults import *
+from django.conf.urls import patterns, include, url
 
-# Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Example:
-    # (r'^gamelan/', include('gamelan.foo.urls')),
+    # Examples:
+    # url(r'^$', 'linkclone.views.home', name='home'),
+    # url(r'^blog/', include('blog.urls')),
 
-    # Uncomment the admin/doc line below to enable admin documentation:
-    #(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    # Uncomment the next line to enable the admin:
-    (r'^admin/', include(admin.site.urls)),
-    (r'^bookmarks/', include('bookmarks.urls')),
-    (r'^accounts/', include('registration.backends.default.urls')),
-    url(r'^$', 'bookmarks.views.index'),
-    url(r'^u/(?P<username>[\w]+)$', 'bookmarks.views.user_bookmark', name='user_bookmark'),
+    url(r'^admin/', include(admin.site.urls)),
 )
-
