@@ -1,7 +1,6 @@
 from django.contrib import admin
-from django.conf import settings
 
-from bookmarks.models import Link, Bookmark
+from .models import Link, Bookmark
 
 
 class BookmarkAdmin(admin.ModelAdmin):
@@ -14,4 +13,3 @@ class LinkAdmin(admin.ModelAdmin):
 
 admin.site.register(Bookmark, BookmarkAdmin)
 admin.site.register(Link, LinkAdmin)
-

@@ -1,9 +1,8 @@
-from django.conf.urls.defaults import *
+from django.conf.urls import *
 
-urlpatterns = patterns('',
+urlpatterns = patterns('linkclone.bookmarks.views',
 
-    url(r'^$', 'bookmarks.views.index'),
-    url(r'^save$', 'bookmarks.views.save_bookmark', name='save_bookmark'),
-    url(r'^login$', 'bookmarks.views.login', name='login_redirect'),
+    url(r'^$', 'index', name='index'),
+    url(r'^save$', 'save_bookmark', name='save'),
+    url(r'^login$', 'login', name='login_redirect'),
 )
-

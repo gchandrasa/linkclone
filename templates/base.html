@@ -6,16 +6,13 @@
   <ul>
     <li><a href="/">Home</a></li>
     {% if user.is_authenticated %}
-    <li><a href="{% url user_bookmark user %}">Bookmarks</a></li>
-    <li><a href="{% url auth_logout %}">Log Out</a></li>
+    <li><a href="{% url 'bookmarks:index' %}">Bookmarks</a></li>
     {% else %}
-    <li><a href="{% url registration_register %}">Register</a></li>
-    <li><a href="{% url auth_login %}">Log In</a></li>
     {% endif %}
   </ul>
   {% if user.is_authenticated %}
   Save Bookmark
-  <form action="{% url save_bookmark %}" method="post">
+  <form action="{% url 'bookmarks:save' %}" method="post">
     {% csrf_token %}
     <input type="text" name="url"  />
 

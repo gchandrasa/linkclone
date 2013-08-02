@@ -1,5 +1,6 @@
-import lxml.html
+import requests
 import urlparse
+from bs4 import BeautifulSoup
 
 from django.contrib.auth.models import User
 from django.db import models
@@ -9,7 +10,7 @@ from taggit.managers import TaggableManager
 
 class Link(models.Model):
     title = models.CharField(max_length=255)
-    url = models.URLField('URL', verify_exists=False, max_length=255)
+    url = models.URLField('URL', max_length=255)
     count = models.IntegerField(default=0, editable=False)
     latest_bookmarked = models.DateTimeField(auto_now=True)
 
@@ -24,8 +25,9 @@ class Link(models.Model):
         return urlparse.urlsplit(self.url)[1]
 
     def save(self, *args, **kwargs):
-        html = lxml.html.parse(self.url)
-        self.title = html.find(".//title").text
+        r = requests.get(self.url)
+        soup = BeautifulSoup(r.content)
+        self.title = soup.find('title').text.strip()
         return super(Link, self).save(*args, **kwargs)
 
 
