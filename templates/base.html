@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Linkclone | Welcome</title>
+    <title>{% block title %}Linkclone | Welcome{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/foundation.css' %}" />
     <script src="{% static 'js/modernizr.js' %}"></script>
   </head>
@@ -18,7 +18,13 @@
       <section class="top-bar-section">
         <!-- Right Nav Section -->
         <ul class="right">
-          <li class="active"><a href="#">Bookmarks</a></li>
+          {% if user.is_authenticated %}
+            <li><a href="#">Bookmarks</a></li>
+            <li><a href="{% url 'auth_logout' %}">Sign out</a></li>
+          {% else %}
+            <li><a href="{% url 'auth_login' %}">Sign In</a></li>
+            <li><a href="{% url 'registration_register' %}">Join Linkclone</a></li>
+          {% endif %}
         </ul>
       </section>
     </nav>

@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'taggit',
     'south',
     'django_extensions',
+    'registration',
 
     'linkclone.bookmarks'
 
@@ -99,6 +100,8 @@ MEDIA_URL = '/media/'
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
 )
+
+ACCOUNT_ACTIVATION_DAYS = 7
 
 # local_settings.py can be used to override environment-specific settings
 # like database and email that differ between development and production.
