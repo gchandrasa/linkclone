@@ -1,36 +1,33 @@
-<html lang="en">
+<!doctype html>{% load staticfiles %}
+<html class="no-js" lang="en">
   <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Linkclone | Welcome</title>
+    <link rel="stylesheet" href="{% static 'css/foundation.css' %}" />
+    <script src="{% static 'js/modernizr.js' %}"></script>
   </head>
-
   <body>
-  <ul>
-    <li><a href="/">Home</a></li>
-    {% if user.is_authenticated %}
-    <li><a href="{% url 'bookmarks:index' %}">Bookmarks</a></li>
-    {% else %}
-    {% endif %}
-  </ul>
-  {% if user.is_authenticated %}
-  Save Bookmark
-  <form action="{% url 'bookmarks:save' %}" method="post">
-    {% csrf_token %}
-    <input type="text" name="url"  />
-
-    <p><input type="Submit" value="Next &rarr;" /></p>
-  </form>
-  {% endif %}
-
-  {% if messages %}
-  <ul class="messages">
-      {% for message in messages %}
-      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-      {% endfor %}
-  </ul>
-  {% endif %}
-
-  {% block content %}
-
-  {% endblock %}
+    <nav class="top-bar" data-topbar>
+      <ul class="title-area">
+        <li class="name">
+          <h1><a href="/">Linkclone</a></h1>
+        </li>
+        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+      </ul>
+      <section class="top-bar-section">
+        <!-- Right Nav Section -->
+        <ul class="right">
+          <li class="active"><a href="#">Bookmarks</a></li>
+        </ul>
+      </section>
+    </nav>
+    {% block content %}
+    {% endblock %}
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/foundation.min.js' %}"></script>
+    <script>
+      $(document).foundation();
+    </script>
   </body>
 </html>
-
