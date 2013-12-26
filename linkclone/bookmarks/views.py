@@ -3,12 +3,16 @@ from django.contrib import messages
 from django.db import IntegrityError
 
 from .models import Link, Bookmark
+from .forms import BookmarkForm
 
 
 def index(request, template_name='bookmarks/index.html', context={}):
-
+    form = BookmarkForm(request.POST or None)
     link_list = Link.objects.all()[:10]
-    context['link_list'] = link_list
+    context = {
+        'link_list': link_list,
+        'form': form
+    }
 
     return render(request, template_name, context)
 
@@ -17,12 +21,12 @@ def save_bookmark(request):
 
     url = request.POST.get('url', None)
     if url:
-        link, created = Link.objects.get_or_create(url=url)
+        link, is_created = Link.objects.get_or_create(url=url)
         try:
             Bookmark.objects.create(link=link, user=request.user)
         except IntegrityError:
             messages.error(request, 'You already bookmark that URL')
-
+        return redirect('bookmarks:index')
     return redirect('/')
 
 
