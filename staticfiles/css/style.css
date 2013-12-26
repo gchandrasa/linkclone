@@ -1,0 +1,8 @@
+.top-bar input, .top-bar .button {
+    font-size: 0.875rem;
+}
+.top-bar input {
+    height: auto;
+    padding-top: .35rem;
+    padding-bottom: 0.35rem;
+}

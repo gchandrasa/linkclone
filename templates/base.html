@@ -4,7 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}Linkclone | Welcome{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/foundation.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/foundation.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <script src="{% static 'js/modernizr.js' %}"></script>
   </head>
   <body>
@@ -25,6 +26,18 @@
             <li><a href="{% url 'auth_login' %}">Sign In</a></li>
             <li><a href="{% url 'registration_register' %}">Join Linkclone</a></li>
           {% endif %}
+        </ul>
+        <ul class="left">
+          <li class="has-form">
+            <div class="row collapse">
+              <div class="large-8 small-9 columns">
+                <input type="text" placeholder="Find bookmark" name="q">
+              </div>
+              <div class="large-4 small-3 columns">
+                <a href="#" class="alert button expand">Search</a>
+              </div>
+            </div>
+          </li>
         </ul>
       </section>
     </nav>
