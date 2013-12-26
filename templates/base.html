@@ -19,7 +19,7 @@
         <!-- Right Nav Section -->
         <ul class="right">
           {% if user.is_authenticated %}
-            <li><a href="#">Bookmarks</a></li>
+            <li><a href="{% url 'bookmarks:index' %}">Bookmarks</a></li>
             <li><a href="{% url 'auth_logout' %}">Sign out</a></li>
           {% else %}
             <li><a href="{% url 'auth_login' %}">Sign In</a></li>

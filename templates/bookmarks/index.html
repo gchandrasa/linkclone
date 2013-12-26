@@ -1,23 +1,29 @@
 {% extends 'base.html' %}
 
+{% block title %}Your bookmarks list{% endblock %}
 
 {% block content %}
-<h1>LinkClone</h1>
-<form action="{% url 'bookmarks:save' %}" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Submit">
-</form>
-{% if link_list %}
-  <ul>
-  {% for link in link_list %}
-    <li>
-    <p><a href="{{ link.url }}" rel="nofollow">{{ link.title }}</a> <span class="via-links"> ({{ link.base_url }}) </span> - saved by {{ link.count }}</p>
-    </li>
-  {% endfor %}
-  </ul>
-{% else %}
-  <p>No bookmark</p>
-{% endif %}
+<div class="row">
+  <div class="large-12 columns">
+    <h2>Add new bookmark</h2>
+    <form action="{% url 'bookmarks:save' %}" method="POST">
+        {% csrf_token %}
+        {{ form.url }}
+        {{ form.url.errors }}
+        <input type="submit" value="Submit" class="button small radius">
+    </form>
+    <h1>Bookmarks</h1>
+    {% if link_list %}
+      <ul>
+      {% for link in link_list %}
+        <li>
+        <a href="{{ link.url }}" rel="nofollow">{{ link.title }}</a> <span class="via-links"> ({{ link.base_url }}) </span> - saved by {{ link.count }}
+        </li>
+      {% endfor %}
+      </ul>
+    {% else %}
+      <p>No bookmark</p>
+    {% endif %}
+  </div>
+</div>
 {% endblock %}
-
