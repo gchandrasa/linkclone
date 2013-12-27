@@ -1,0 +1,2 @@
+{{ obj.link.title }}
+{{ obj.link.url }}

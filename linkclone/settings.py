@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'south',
     'django_extensions',
     'registration',
+    'haystack',
 
     'linkclone.bookmarks'
 
@@ -102,6 +103,14 @@ TEMPLATE_DIRS = (
 )
 
 ACCOUNT_ACTIVATION_DAYS = 7
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': os.path.join(BASE_DIR, 'whoosh_index')
+    },
+}
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 
 # local_settings.py can be used to override environment-specific settings
 # like database and email that differ between development and production.
