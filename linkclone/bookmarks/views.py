@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.db import IntegrityError
 
+from haystack.query import SearchQuerySet
+
 from .models import Link, Bookmark
 from .forms import BookmarkForm
 
@@ -39,5 +41,15 @@ def user_bookmark(request, username,
     return render(request, template_name, context)
 
 
-def login(request):
-    return redirect('/u/%s' % request.user)
+def search(request):
+    q = request.GET.get('q', None)
+    if q:
+        results = SearchQuerySet().filter(content=q)
+        print results
+    else:
+        results = None
+    context = {
+        'results': results,
+        'q': q,
+    }
+    return render(request, 'bookmarks/results.html', context)

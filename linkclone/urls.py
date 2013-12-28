@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     url(r'^', include('linkclone.website.urls',
         namespace='website')),
     url(r'^accounts/', include('registration.backends.default.urls')),
+    url(r'^search/$', 'linkclone.bookmarks.views.search', name='search'),
 )
 
 

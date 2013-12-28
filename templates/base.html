@@ -29,14 +29,16 @@
         </ul>
         <ul class="left">
           <li class="has-form">
+            <form action="{% url 'search' %}">
             <div class="row collapse">
               <div class="large-8 small-9 columns">
-                <input type="text" placeholder="Find bookmark" name="q">
+                <input type="text" placeholder="Find bookmark" name="q" value={{ q }}>
               </div>
               <div class="large-4 small-3 columns">
-                <a href="#" class="alert button expand">Search</a>
+                <button class="alert button expand">Search</button>
               </div>
             </div>
+            </form>
           </li>
         </ul>
       </section>

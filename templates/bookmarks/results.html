@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+  <div class="large-12 columns">
+    <h1>Search results</h1>
+    <ul>
+    {% for result in results %}
+      <li><a href="{{ result.url }}">{{ result.title }}</a></li>
+    {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}
