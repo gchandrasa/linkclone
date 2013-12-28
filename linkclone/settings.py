@@ -102,6 +102,8 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
 )
 
+LOGIN_REDIRECT_URL = '/bookmarks/'
+
 ACCOUNT_ACTIVATION_DAYS = 7
 
 HAYSTACK_CONNECTIONS = {
