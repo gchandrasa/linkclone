@@ -48,4 +48,3 @@ class Bookmark(models.Model):
         self.link.count = self.link.bookmarks.count()
         self.link.save()
         return bookmark
-

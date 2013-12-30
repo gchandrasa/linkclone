@@ -4,7 +4,7 @@ from .models import Link, Bookmark
 
 
 class BookmarkAdmin(admin.ModelAdmin):
-    list_display = ('user',)
+    list_display = ('user', 'link', 'date')
 
 
 class LinkAdmin(admin.ModelAdmin):

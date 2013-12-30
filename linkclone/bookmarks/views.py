@@ -25,7 +25,11 @@ def save_bookmark(request):
     if url:
         link, is_created = Link.objects.get_or_create(url=url)
         try:
-            Bookmark.objects.create(link=link, user=request.user)
+            bookmark = Bookmark.objects.create(link=link, user=request.user)
+            tags = request.POST.get('tags', None)
+            tags = [tag.strip() for tag in tags.split(",")]
+            bookmark.tags.add(*tags)
+            bookmark.save()
         except IntegrityError:
             messages.error(request, 'You already bookmark that URL')
         return redirect('bookmarks:index')
@@ -45,7 +49,6 @@ def search(request):
     q = request.GET.get('q', None)
     if q:
         results = SearchQuerySet().filter(content=q)
-        print results
     else:
         results = None
     context = {

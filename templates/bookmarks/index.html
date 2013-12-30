@@ -10,6 +10,8 @@
         {% csrf_token %}
         {{ form.url }}
         {{ form.url.errors }}
+        {{ form.tags }}
+        {{ form.tags.errors }}
         <input type="submit" value="Submit" class="button tiny radius">
     </form>
     <h1>Bookmarks</h1>
