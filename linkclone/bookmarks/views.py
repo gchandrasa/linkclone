@@ -10,10 +10,10 @@ from .forms import BookmarkForm
 
 def index(request, template_name='bookmarks/index.html', context={}):
     form = BookmarkForm(request.POST or None)
-    link_list = Link.objects.all()[:10]
+    bookmarl_list = Bookmark.objects.all()[:10]
     context = {
-        'link_list': link_list,
-        'form': form
+        'bookmarl_list': bookmarl_list,
+        'form': form,
     }
 
     return render(request, template_name, context)

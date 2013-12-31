@@ -15,11 +15,18 @@
         <input type="submit" value="Submit" class="button tiny radius">
     </form>
     <h1>Bookmarks</h1>
-    {% if link_list %}
+    {% if bookmarl_list %}
       <ul>
-      {% for link in link_list %}
+      {% for bookmark in bookmarl_list %}
         <li>
-        <a href="{{ link.url }}" rel="nofollow">{{ link.title }}</a> <span class="via-links"> ({{ link.base_url }}) </span> - saved by {{ link.count }}
+        <a href="{{ bookmark.link.url }}" rel="nofollow">{{ bookmark.link.title }}</a> <span class="via-links"> ({{ bookmark.link.base_url }}) </span> - saved by {{ bookmark.link.count }}<br>
+        {% if bookmark.tags.all %}
+        tagged by
+        {% for tag in bookmark.tags.all %}
+          <a href="">{{ tag }}</a>
+          {% if not forloop.last %}, {% endif %}
+        {% endfor %}
+        {% endif %}
         </li>
       {% endfor %}
       </ul>
