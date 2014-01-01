@@ -39,11 +39,14 @@ class Bookmark(models.Model):
 
     tags = TaggableManager()
 
+    tag_list = models.TextField(blank=True)
+
     class Meta:
         ordering = ('-date',)
         unique_together = ('link', 'user')
 
     def save(self, *args, **kwargs):
+        self.tag_list = ", ".join(self.tags.names())
         bookmark = super(Bookmark, self).save(*args, **kwargs)
         self.link.count = self.link.bookmarks.count()
         self.link.save()

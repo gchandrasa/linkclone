@@ -8,6 +8,7 @@ class BookmarkIndex(indexes.SearchIndex, indexes.Indexable):
     user = indexes.CharField(model_attr='user')
     title = indexes.CharField()
     url = indexes.CharField()
+    tag_list = indexes.CharField(model_attr='tag_list')
 
     def get_model(self):
         return Bookmark

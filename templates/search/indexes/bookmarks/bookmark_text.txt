@@ -1,2 +1,3 @@
 {{ object.link.title }}
 {{ object.link.url }}
+{{ object.tag_list }}
