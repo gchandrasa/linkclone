@@ -19,7 +19,7 @@
       <ul>
       {% for bookmark in bookmarl_list %}
         <li>
-        <a href="{{ bookmark.link.url }}" rel="nofollow">{{ bookmark.link.title }}</a> <span class="via-links"> ({{ bookmark.link.base_url }}) </span> - saved by {{ bookmark.link.count }}<br>
+        <a href="{{ bookmark.link.url }}" rel="nofollow">{{ bookmark.link.title }}</a> <span class="via-links"> ({{ bookmark.link.base_url }}) </span><br>
         {% if bookmark.tags_as_text %}
         tagged by
         {% for tag in bookmark.tags_as_list %}
