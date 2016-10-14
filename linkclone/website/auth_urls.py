@@ -1,11 +1,10 @@
 from django.conf.urls import include
-from django.conf.urls import patterns
 from django.conf.urls import url
 
 from django.contrib.auth import views as auth_views
 
 
-urlpatterns = patterns('',
+urlpatterns = [
    url(r'^login/$',
        auth_views.login,
        {'template_name': 'registration/login.html'},
@@ -32,4 +31,4 @@ urlpatterns = patterns('',
    url(r'^password/reset/done/$',
        auth_views.password_reset_done,
        name='password_reset_done'),
-)
+]

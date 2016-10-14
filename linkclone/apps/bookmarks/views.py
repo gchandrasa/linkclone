@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.db import IntegrityError
 
-from haystack.query import SearchQuerySet
 
 from .models import Link, Bookmark
 from .forms import BookmarkForm
@@ -26,6 +25,7 @@ def save_bookmark(request):
         link, is_created = Link.objects.get_or_create(url=url)
         try:
             bookmark = Bookmark.objects.create(link=link, user=request.user)
+            print bookmark
             tags = request.POST.get('tags', None)
             tags = [tag.strip() for tag in tags.split(",")]
             bookmark.tags.add(*tags)
@@ -48,7 +48,7 @@ def user_bookmark(request, username,
 def search(request):
     q = request.GET.get('q', None)
     if q:
-        results = SearchQuerySet().filter(content=q)
+        results = Bookmark.objects.filter(user=request.user, link__title__icontains=q)
     else:
         results = None
     context = {

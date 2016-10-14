@@ -1,4 +1,6 @@
+.DS_Store
 *.pyc
 *.sqlite
 *.sqlite3
 whoosh_index/*
+linkclone/settings/local.py

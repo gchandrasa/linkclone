@@ -50,7 +50,8 @@ class Bookmark(models.Model):
         unique_together = ('link', 'user')
 
     def save(self, *args, **kwargs):
-        self.tags_as_text = ", ".join(self.tags.names())
+        if self.pk and self.tags:
+            self.tags_as_text = ", ".join(self.tags.names())
         bookmark = super(Bookmark, self).save(*args, **kwargs)
         self.link.count = self.link.bookmarks.count()
         self.link.save()

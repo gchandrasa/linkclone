@@ -6,7 +6,7 @@
     <h1>Search results</h1>
     <ul>
     {% for result in results %}
-      <li><a href="{{ result.url }}">{{ result.title }}</a></li>
+      <li><a href="{{ result.link.url }}">{{ result.link.title }}</a></li>
     {% endfor %}
     </ul>
   </div>

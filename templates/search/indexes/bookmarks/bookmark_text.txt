@@ -1,3 +1,0 @@
-{{ object.link.title }}
-{{ object.link.url }}
-{{ object.tags_as_text }}

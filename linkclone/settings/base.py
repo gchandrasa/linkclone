@@ -10,19 +10,17 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/dev/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'o32ft+^y=6)rk^pns6)%o=i-y%mo+w=^l3gu5jds0!8scx3$j-'
+SECRET_KEY = os.getenv('SECRET_KEY', 'o32ft+^y=6)rk^pns6)%o=i-y%mo+w=^l3gu5jds0!8scx3$j-')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -39,13 +37,10 @@ INSTALLED_APPS = (
 
     # third party apps
     'taggit',
-    'south',
     'django_extensions',
     'registration',
-    'haystack',
 
-    'linkclone.bookmarks'
-
+    'linkclone.apps.bookmarks'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -58,6 +53,22 @@ MIDDLEWARE_CLASSES = (
 )
 
 ROOT_URLCONF = 'linkclone.urls'
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
 
 WSGI_APPLICATION = 'linkclone.wsgi.application'
 
@@ -98,26 +109,6 @@ STATICFILES_DIRS = (
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'templates'),
-)
-
 LOGIN_REDIRECT_URL = '/bookmarks/'
 
 ACCOUNT_ACTIVATION_DAYS = 7
-
-HAYSTACK_CONNECTIONS = {
-    'default': {
-        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
-        'PATH': os.path.join(BASE_DIR, 'whoosh_index')
-    },
-}
-HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
-
-# local_settings.py can be used to override environment-specific settings
-# like database and email that differ between development and production.
-
-try:
-    from local_settings import *
-except ImportError:
-    pass
